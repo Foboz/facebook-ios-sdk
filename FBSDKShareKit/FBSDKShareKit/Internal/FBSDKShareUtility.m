@@ -376,10 +376,15 @@
 {
   FBSDKShareVideo *video = videoContent.video;
   NSURL *videoURL = video.videoURL;
-  return ([self _validateRequiredValue:videoContent name:@"videoContent" error:errorRef] &&
+  BOOL validated =  ([self _validateRequiredValue:videoContent name:@"videoContent" error:errorRef] &&
           [self _validateRequiredValue:video name:@"video" error:errorRef] &&
           [self _validateRequiredValue:videoURL name:@"videoURL" error:errorRef] &&
-          [self _validateAssetLibraryURL:videoURL name:@"videoURL" error:errorRef]);
+          ([self _validateAssetLibraryURL:videoURL name:@"videoURL" error:errorRef] ||
+           [self _validateFileURL:videoURL name:@"videoURL" error:errorRef]));
+  if (validated) {
+    errorRef = nil;
+  }
+  return validated;
 }
 
 #pragma mark - Object Lifecycle
