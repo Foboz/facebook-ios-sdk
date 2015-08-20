@@ -16,23 +16,31 @@
 // IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-#import <UIKit/UIKit.h>
+#import "FBSDKMessengerInvalidOptionsAlertPresenter.h"
 
-#import <FBSDKCoreKit/FBSDKAccessToken.h>
-#import <FBSDKCoreKit/FBSDKAppEvents.h>
-#import <FBSDKCoreKit/FBSDKAppLinkUtility.h>
-#import <FBSDKCoreKit/FBSDKApplicationDelegate.h>
-#import <FBSDKCoreKit/FBSDKConstants.h>
-#import <FBSDKCoreKit/FBSDKCopying.h>
-#import <FBSDKCoreKit/FBSDKGraphRequest.h>
-#import <FBSDKCoreKit/FBSDKGraphRequestConnection.h>
-#import <FBSDKCoreKit/FBSDKMacros.h>
-#import <FBSDKCoreKit/FBSDKMutableCopying.h>
-#import <FBSDKCoreKit/FBSDKProfile.h>
-#import <FBSDKCoreKit/FBSDKProfilePictureView.h>
-#import <FBSDKCoreKit/FBSDKSettings.h>
-#import <FBSDKCoreKit/FBSDKTestUsersManager.h>
-#import <FBSDKCoreKit/FBSDKUtility.h>
+@implementation FBSDKMessengerInvalidOptionsAlertPresenter
 
-#define FBSDK_VERSION_STRING @"4.5.1"
-#define FBSDK_TARGET_PLATFORM_VERSION @"v2.4"
++ (instancetype)sharedInstance
+{
+  static FBSDKMessengerInvalidOptionsAlertPresenter *sharedInstance = nil;
+  static dispatch_once_t onceToken;
+  dispatch_once(&onceToken, ^{
+    sharedInstance = [[self alloc] init];
+  });
+  return sharedInstance;
+}
+
+#pragma mark - Public
+
+- (void)presentInvalidOptionsAlert
+{
+  UIAlertView * alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Invalid Options", @"Alert title telling the developers that they provided invalid options.")
+                                                   message:NSLocalizedString(@"You need to provide valid options", @"Message when invalid options are provided.")
+                                                  delegate:self
+                                         cancelButtonTitle:NSLocalizedString(@"OK", @"Button label when the developers have acknowledged the error.")
+                                         otherButtonTitles:nil, nil];
+  [alert show];
+
+}
+
+@end

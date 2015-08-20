@@ -18,21 +18,16 @@
 
 #import <UIKit/UIKit.h>
 
-#import <FBSDKCoreKit/FBSDKAccessToken.h>
-#import <FBSDKCoreKit/FBSDKAppEvents.h>
-#import <FBSDKCoreKit/FBSDKAppLinkUtility.h>
-#import <FBSDKCoreKit/FBSDKApplicationDelegate.h>
-#import <FBSDKCoreKit/FBSDKConstants.h>
-#import <FBSDKCoreKit/FBSDKCopying.h>
-#import <FBSDKCoreKit/FBSDKGraphRequest.h>
-#import <FBSDKCoreKit/FBSDKGraphRequestConnection.h>
-#import <FBSDKCoreKit/FBSDKMacros.h>
-#import <FBSDKCoreKit/FBSDKMutableCopying.h>
-#import <FBSDKCoreKit/FBSDKProfile.h>
-#import <FBSDKCoreKit/FBSDKProfilePictureView.h>
-#import <FBSDKCoreKit/FBSDKSettings.h>
-#import <FBSDKCoreKit/FBSDKTestUsersManager.h>
-#import <FBSDKCoreKit/FBSDKUtility.h>
+/*!
+ @class FBSDKMessengerInvalidOptionsAlertPresenter
 
-#define FBSDK_VERSION_STRING @"4.5.1"
-#define FBSDK_TARGET_PLATFORM_VERSION @"v2.4"
+ @abstract
+ Presents an alert telling the developer that they didn't provide valid options
+ */
+@interface FBSDKMessengerInvalidOptionsAlertPresenter : NSObject
+
++ (instancetype)sharedInstance;
+
+- (void)presentInvalidOptionsAlert;
+
+@end
