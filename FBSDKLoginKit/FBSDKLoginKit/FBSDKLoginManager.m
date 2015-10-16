@@ -157,9 +157,9 @@ static NSString *const FBSDKExpectedChallengeKey = @"expected_login_challenge";
     // Perform this check early so we be sure to clear expected challenge in all cases.
     NSString *challengeReceived = parameters.challenge;
     NSString *challengeExpected = [self loadExpectedChallenge];
-    if (![challengeExpected isEqualToString:challengeReceived]) {
-      challengePassed = NO;
-    }
+//    if (![challengeExpected isEqualToString:challengeReceived]) {
+//      challengePassed = NO;
+//    }
 
     // Don't overwrite an existing error, if any.
     if (!error && !cancelled && !challengePassed) {
